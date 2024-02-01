@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_pymongo import PyMongo
 
 app = Flask(__name__)
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/cats_db'
+app.config['MONGO_URI'] = 'your mongodb url'
 mongo = PyMongo(app)
 
 # Routes for CRUD operations
