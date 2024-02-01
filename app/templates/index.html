@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Classifier</title>
+</head>
+<body>
+
+<h1>Cat Classifier App</h1>
+
+<!-- Form to Add a New Cat -->
+<form action="/add" method="post">
+    <label for="cat_name">Cat Name:</label>
+    <input type="text" name="cat_name" required>
+    
+    <label for="image">Cat Image:</label>
+    <input type="file" name="image" accept="image/*" required>
+
+    <button type="submit">Add Cat</button>
+</form>
+
+<hr>
+
+<!-- List of Cats -->
+{% if cats %}
+    <ul>
+        {% for cat in cats %}
+            <li>
+                <strong>{{ cat.cat_name }}</strong>
+                <img src="{{ url_for('static', filename='images/' + cat.image_filename) }}" alt="{{ cat.cat_name }}">
+
+                <!-- Form to Update Cat Details -->
+                <form action="/update/{{ cat._id }}" method="post" style="display: inline;">
+                    <label for="cat_name">Update Name:</label>
+                    <input type="text" name="cat_name" value="{{ cat.cat_name }}">
+                    
+                    <button type="submit">Update</button>
+                </form>
+
+                <!-- Form to Delete Cat -->
+                <form action="/delete/{{ cat._id }}" method="get" style="display: inline;">
+                    <button type="submit">Delete</button>
+                </form>
+
+                <!-- Form to Classify Cat -->
+                <form action="/classify/{{ cat._id }}" method="get" style="display: inline;">
+                    <button type="submit">Classify</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No cats available.</p>
+{% endif %}
+
+</body>
+</html>
