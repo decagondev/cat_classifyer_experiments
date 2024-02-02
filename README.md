@@ -2,7 +2,7 @@
 
 a simple concept repository with some basic structure for testing and a simple starting point.
 
-**example rtaining data structure**
+**example training data structure**
 ```
 /dataset
     /train
